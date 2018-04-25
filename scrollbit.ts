@@ -27,7 +27,7 @@ namespace smbus {
     }
 }
 
-//% weight=100 color=#000000 icon="\uf00a"
+//% weight=100 color=#000000 icon="\uf06e" block="Scroll:Bit"
 namespace scrollbit {
     const I2C_ADDR: number = 0x74
     const REG_MODE: number = 0x00
