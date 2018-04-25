@@ -1,0 +1,11 @@
+{
+    "name": "scrollbit",
+    "dependencies": {
+        "core": "*"
+    },
+    "description": "",
+    "files": [
+        "README.md",
+        "scrollbit.ts"
+    ]
+}
