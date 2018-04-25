@@ -93,26 +93,20 @@ namespace scrollbit {
         return getFontData(character.charCodeAt(0))
     }
 
-    function indexOf(char: string, str: string): number {
-        for (let x: number = 0; x < str.length; x++){
-            if (str.charAt(x) == char.charAt(0)) {
-                return x
-            }
-        }
-        return -1
-    }
+    function charWidth(character: string): number {
+        let data: Buffer = getFontData(character.charCodeAt(0))
+        let width: number = data[0] | data[1] | data[2] | data[3] | data[4]
 
-    function charWidth(char: string): number {
-        if (indexOf(char, "\"*+-0123<=>ABCDEFHKLOPQSUXZ[]^bcdefghjklnopqrsxz{") > -1) {
+        if (width & 1) {
+            return 5
+        }
+        if (width & 2) {
             return 4
         }
-        if (indexOf(char, " (),;I`}") > -1) {
+        if (width & 4) {
             return 3
         }
-        if (indexOf(char, "!'.:i|") > -1) {
-            return 2
-        }
-        return 5
+        return 2
     }
 
     /**
@@ -179,7 +173,7 @@ namespace scrollbit {
      * @param col - column to get (0-16)
      * @param row - row to get (0-6)
      */
-    //% blockId=scrollbit_get_pixel
+    //% blockId=scrollbit_get_pixel icon="\uf0eb"
     //% block="get pixel|at col %col| row %row"
     export function getPixel(col: number, row: number): number {
         return buf[pixelAddr(col, row)]
@@ -200,22 +194,62 @@ namespace scrollbit {
         }
     }
 
+    /**
+     * Draw text on scroll:bit
+     * @param col - column to set (0-16)
+     * @param row - row to set (0-6)
+     * @param text - text to show
+     * @param brightness - brightness to set (0-255)
+     */
     //% block
     //% col.min=0 col.max=16
     //% row.min=0 row.max=6
     //% brightness.min=0 brightness.max=255
-    export function drawString(col: number, row: number, str: string, brightness: number) {
+    export function drawText(col: number, row: number, text: string, brightness: number) {
         let offset_col: number = 0
-        for (let x: number = 0; x < str.length; x++){
-            drawChar(col + offset_col, row, str.charAt(x), brightness)
-            offset_col += charWidth(str.charAt(x)) + 1
+        for (let x: number = 0; x < text.length; x++){
+            let width:  number = charWidth(text.charAt(x))
+            if (col + offset_col >= COLS) {
+                return
+            }
+            if (col + offset_col + width < 0) {
+                offset_col += width + 1
+                continue
+            }
+            drawChar(col + offset_col, row, text.charAt(x), brightness)
+            offset_col += width + 1
         }
     }
 
-    export function measureString(str: string): number {
+    /**
+     * Scroll text across scroll:bit
+     * @param text - text to scroll
+     * @param brightness - brightness to set (0-255)
+     * @param delay - additional delay in milliseconds (0-100)
+     */
+    //% block
+    //% brightness.min=0 brightness.max=255
+    //% delay.min=0 delay.max=100
+    export function scrollText(text: string, brightness: number, delay: number=50) {
+        let len: number = measureText(text)
+        for (let col: number = 0; col < len + COLS; col++){
+            clear()
+            drawText(-col + COLS, 1, text, brightness)
+            show()
+            control.waitMicros(delay * 1000)
+        }
+
+    }
+
+    /**
+     * Measure text, returns a length in pixels
+     * @param text - text to measure
+     */
+    //% block advanced
+    export function measureText(text: string): number {
         let len: number = 0
-        for (let x: number = 0; x < str.length; x++){
-            len += charWidth(str.charAt(x)) + 1
+        for (let x: number = 0; x < text.length; x++){
+            len += charWidth(text.charAt(x)) + 1
         }
         return len
     }
@@ -252,7 +286,7 @@ namespace scrollbit {
     /**
      * Return the width (number of cols) of scroll:bit
      */
-    //% block
+    //% block color=#444444
     export function cols(): number {
         return COLS
     }
@@ -260,7 +294,7 @@ namespace scrollbit {
     /**
      * Return the height (number of rows) of scroll:bit
      */
-    //% block
+    //% block color=#444444
     export function rows(): number {
         return ROWS
     }
