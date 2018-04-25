@@ -29,9 +29,6 @@ namespace smbus {
 
 //% weight=100 color=#000000 icon="\uf06e" block="Scroll:Bit"
 namespace scrollbit {
-    // //% fixedInstance jres=font.font
-    //const FONT = new Image(hex ``)
-
     const I2C_ADDR: number = 0x74
     const REG_MODE: number = 0x00
     const REG_FRAME: number = 0x01
@@ -84,12 +81,12 @@ namespace scrollbit {
 
     //% shim=scrollbit::getFontDataByte
     function getFontDataByte(index: number): number {
-        return
+        return 0
     }
 
     //% shim=scrollbit::getFontData
     function getFontData(index: number): Buffer {
-        return
+        return pins.createBuffer(5)
     }
 
     function getChar(character: string): Buffer {
