@@ -29,6 +29,9 @@ namespace smbus {
 
 //% weight=100 color=#000000 icon="\uf06e" block="Scroll:Bit"
 namespace scrollbit {
+    // //% fixedInstance jres=font.font
+    //const FONT = new Image(hex ``)
+
     const I2C_ADDR: number = 0x74
     const REG_MODE: number = 0x00
     const REG_FRAME: number = 0x01
@@ -76,6 +79,43 @@ namespace scrollbit {
         }
 
         return (col * 16) + row
+    }
+
+
+    //% shim=scrollbit::getFontDataByte
+    function getFontDataByte(index: number): number {
+        return
+    }
+
+    //% shim=scrollbit::getFontData
+    function getFontData(index: number): Buffer {
+        return
+    }
+
+    function getChar(character: string): Buffer {
+        return getFontData(character.charCodeAt(0))
+    }
+
+    function indexOf(char: string, str: string): number {
+        for (let x: number = 0; x < str.length; x++){
+            if (str.charAt(x) == char.charAt(0)) {
+                return x
+            }
+        }
+        return -1
+    }
+
+    function charWidth(char: string): number {
+        if (indexOf(char, "\"*+-0123<=>ABCDEFHKLOPQSUXZ[]^bcdefghjklnopqrsxz{") > -1) {
+            return 4
+        }
+        if (indexOf(char, " (),;I`}") > -1) {
+            return 3
+        }
+        if (indexOf(char, "!'.:i|") > -1) {
+            return 2
+        }
+        return 5
     }
 
     /**
@@ -146,6 +186,41 @@ namespace scrollbit {
     //% block="get pixel|at col %col| row %row"
     export function getPixel(col: number, row: number): number {
         return buf[pixelAddr(col, row)]
+    }
+
+    //% block
+    //% col.min=0 col.max=16
+    //% row.min=0 row.max=6
+    //% brightness.min=0 brightness.max=255
+    export function drawChar(col: number, row: number, char: string, brightness: number) {
+        let data: Buffer = getChar(char)
+        for (let c_row = 0; c_row < 5; c_row++) {
+            for (let c_col = 0; c_col < 5; c_col++) {
+                if ((data[c_row] & (1 << (4 - c_col))) > 0) {
+                    setPixel(col + c_col, row + c_row, brightness)
+                }
+            }
+        }
+    }
+
+    //% block
+    //% col.min=0 col.max=16
+    //% row.min=0 row.max=6
+    //% brightness.min=0 brightness.max=255
+    export function drawString(col: number, row: number, str: string, brightness: number) {
+        let offset_col: number = 0
+        for (let x: number = 0; x < str.length; x++){
+            drawChar(col + offset_col, row, str.charAt(x), brightness)
+            offset_col += charWidth(str.charAt(x)) + 1
+        }
+    }
+
+    export function measureString(str: string): number {
+        let len: number = 0
+        for (let x: number = 0; x < str.length; x++){
+            len += charWidth(str.charAt(x)) + 1
+        }
+        return len
     }
 
     /**

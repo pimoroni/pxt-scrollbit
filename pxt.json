@@ -6,6 +6,11 @@
     "description": "",
     "files": [
         "README.md",
+        "font.cpp",
+        "shims.d.ts",
         "scrollbit.ts"
+    ],
+    "testFiles": [
+        "test.ts"
     ]
 }
