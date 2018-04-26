@@ -89,24 +89,17 @@ namespace scrollbit {
         return pins.createBuffer(5)
     }
 
+    //% shim=scrollbit::getCharWidth
+    function getCharWidth(char: number): number {
+        return 5
+    }
+
     function getChar(character: string): Buffer {
         return getFontData(character.charCodeAt(0))
     }
 
     function charWidth(character: string): number {
-        let data: Buffer = getFontData(character.charCodeAt(0))
-        let width: number = data[0] | data[1] | data[2] | data[3] | data[4]
-
-        if (width & 1) {
-            return 5
-        }
-        if (width & 2) {
-            return 4
-        }
-        if (width & 4) {
-            return 3
-        }
-        return 2
+        return getCharWidth(character.charCodeAt(0))
     }
 
     /**
@@ -179,11 +172,18 @@ namespace scrollbit {
         return buf[pixelAddr(col, row)]
     }
 
+    /**
+     * Draw a single alphanumeric character.
+     * @param col - column position (0-16)
+     * @param row - row position (0-6)
+     * @param char - character to display
+     * @param brightness - brightness (0-255)
+     */
     //% block
     //% col.min=0 col.max=16
     //% row.min=0 row.max=6
     //% brightness.min=0 brightness.max=255
-    export function drawChar(col: number, row: number, char: string, brightness: number) {
+    export function drawChar(col: number, row: number, char: string, brightness: number=128) {
         let data: Buffer = getChar(char)
         for (let c_row = 0; c_row < 5; c_row++) {
             for (let c_col = 0; c_col < 5; c_col++) {
@@ -205,7 +205,7 @@ namespace scrollbit {
     //% col.min=0 col.max=16
     //% row.min=0 row.max=6
     //% brightness.min=0 brightness.max=255
-    export function drawText(col: number, row: number, text: string, brightness: number) {
+    export function drawText(col: number, row: number, text: string, brightness: number=128) {
         let offset_col: number = 0
         for (let x: number = 0; x < text.length; x++){
             let width:  number = charWidth(text.charAt(x))
@@ -230,13 +230,15 @@ namespace scrollbit {
     //% block
     //% brightness.min=0 brightness.max=255
     //% delay.min=0 delay.max=100
-    export function scrollText(text: string, brightness: number, delay: number=50) {
+    export function scrollText(text: string, brightness: number=128, delay: number=50) {
         let len: number = measureText(text)
         for (let col: number = 0; col < len + COLS; col++){
             clear()
             drawText(-col + COLS, 1, text, brightness)
             show()
-            control.waitMicros(delay * 1000)
+            if (delay > 0) {
+                control.waitMicros(delay * 1000)
+            }    
         }
 
     }
