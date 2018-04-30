@@ -10,6 +10,7 @@ python:
 addons:
   apt:
     sources:
+      - ubuntu-toolchain-r-test
       - george-edison55-precise-backports
       - sourceline: 'ppa:team-gcc-arm-embedded/ppa'
     packages:
@@ -18,6 +19,11 @@ addons:
       - cmake-data
       - gcc-arm-embedded
       - srecord
+      - g++-4.8
+      - libusb-1.0-0-dev
+
+env:
+  - PXT_ENV=production CXX=g++-4.8
 
 install:
   - nvm install 7
