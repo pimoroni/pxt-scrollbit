@@ -6,6 +6,8 @@
 
 This package adds support for the Pimoroni scroll:bit to makecode.microbit.org.
 
+A scroll:bit is required to use this package, grab yours here: https://shop.pimoroni.com/products/scroll-bit
+
 To use this package, go to https://makecode.microbit.org/, click "Advanced" then "Add Package" and search for scroll:bit. 
 
 ## Bocks Reference
