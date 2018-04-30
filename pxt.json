@@ -1,9 +1,11 @@
 {
     "name": "scrollbit",
+    "version": "0.0.1",
+    "description": "Pimoroni Scroll:Bit",
+    "license": "MIT",
     "dependencies": {
         "core": "*"
     },
-    "description": "",
     "files": [
         "README.md",
         "font.cpp",
@@ -12,5 +14,6 @@
     ],
     "testFiles": [
         "test.ts"
-    ]
+    ],
+    "public": true
 }
