@@ -48,7 +48,7 @@ namespace scrollbit {
         "Rabbit",
         "Cow",
         "Quarte",
-        "EightN",
+        "EigthN",
         "Pitchf",
         "Target",
         "Triang",
@@ -150,6 +150,9 @@ namespace scrollbit {
      */
     //% blockId=scrollbit_set_icon
     //% block="display icon %icon| at col %col| row %row| with brightness %brightness"
+    //% icon.fieldEditor="gridpicker"
+    //% icon.fieldOptions.width="400" icon.fieldOptions.columns="5"
+    //% icon.fieldOptions.itemColour="black" icon.fieldOptions.tooltips="true"
     //% col.min=0 col.max=16
     //% row.min=0 row.max=6
     //% brightness.min=0 brightness.max=255 brightness.defl=128
@@ -196,7 +199,8 @@ namespace scrollbit {
     //% col.min=0 col.max=16
     //% row.min=0 row.max=6
     //% brightness.min=0 brightness.max=255 brightness.defl=128
-    export function setPixel(col: number, row: number, brightness: number=128): void {
+    export function setPixel(col: number, row: number, brightness: number = 128): void {
+        if(col >= COLS || row >= ROWS){return}
         buf[pixelAddr(col, row)] = Math.clamp(0, 255, brightness)
     }
 
