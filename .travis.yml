@@ -1,24 +1,35 @@
-language: node_js
-node_js:
-    - "8.9.4"
-script:
-    - "npm install -g pxt"
-    - "npm install"
-    - "pxt target microbit"
-    - "pxt build --cloud"
+language: python
 sudo: false
-cache:
-    directories:
-    - npm_modules
-    - pxt_modules
+
+node_js:
+  - "7"
+
+python:
+  - "2.7"
+
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+      - george-edison55-precise-backports
+      - sourceline: 'ppa:team-gcc-arm-embedded/ppa'
     packages:
-      - g++-4.8
-      - libusb-1.0-0-dev
-      - libsecret-1-0
-      - libsecret-1-dev
-env:
-  - PXT_ENV=production CXX=g++-4.8
+      - ninja-build
+      - cmake
+      - cmake-data
+      - gcc-arm-embedded
+      - srecord
+
+install:
+  - nvm install 7
+  - pip install yotta
+  - pip install pyopenssl
+  - npm install
+  - npm run pxt:init
+  - npm run pxt:install
+
+script:
+  - npm run test
+
+cache:
+  directories:
+    - node_modules
