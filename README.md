@@ -1,6 +1,6 @@
 # scroll:bit
 
- [![Build Status](https://travis-ci.org/pimoroni/pxt-scrollbit?branch=master)](https://travis-ci.org/pimoroni/pxt-scrollbit)
+ [![Build Status](https://travis-ci.org/pimoroni/pxt-scrollbit.svg?branch=master)](https://travis-ci.org/pimoroni/pxt-scrollbit)
 
 17x7 pixels of single-colour, brightness-controlled, message scrolling goodness!
 
