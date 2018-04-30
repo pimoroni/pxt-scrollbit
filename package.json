@@ -1,0 +1,18 @@
+{
+  "name": "pxt-scrollbit",
+  "version": "0.0.1",
+  "description": "Pimoroni Scroll:Bit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pimoroni/pxt-scrollbit.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pimoroni/pxt-scrollbit/issues"
+  },
+  "homepage": "https://github.com/pimoroni/pxt-scrollbit#readme",
+  "dependencies": {
+    "pxt-core": "0.19.4"
+  }
+}
