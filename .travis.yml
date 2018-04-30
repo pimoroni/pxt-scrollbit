@@ -2,6 +2,9 @@ language: node_js
 node_js:
     - "5.7.0"
 script:
+    - "easy_install pip"
+    - "pip install yotta"
+    - "yotta target bbc-microbit-classic-gcc"
     - "npm install -g pxt"
     - "pxt target microbit"
     - "pxt install"
@@ -18,5 +21,12 @@ addons:
     packages:
       - g++-4.8
       - libusb-1.0-0-dev
+      - cmake 
+      - build-essential 
+      - ninja-build 
+      - python-dev 
+      - libffi-dev 
+      - libssl-dev
+      - python-setuptools
 env:
   - PXT_ENV=production CXX=g++-4.8
