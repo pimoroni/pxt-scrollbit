@@ -18,7 +18,9 @@ To use this package, go to https://makecode.microbit.org/, click "Advanced" then
 
 Read more at https://makecode.microbit.org/packages/build-your-own
 
-## Reference
+## Bocks Reference
+
+## JavaScript Reference
 
 scroll:bit has 144 pixels arranged in 17 columns and 7 rows, each pixel supports 255 levels of brightness although these are gamma-corrected to 183 possible values.
 
@@ -140,6 +142,61 @@ let width: number = scrollbit.measureText("Hello World")
 ```
 
 This will return a number of pixels corresponding to the length of the text as it's displayed on scroll:bit (using the built-in 5x5 micro:bit font).
+
+### Icons & Arrows
+
+You can use icons and arrows in your text, just place their name in curly brackets like so: `"Hello {Heart} World"` or: `"Boo! Went the {Ghost}"` or: `"{Heart}{SmallHeart}{Heart} Happy Birthday! {Heart}{SmallHeart}{Heart}"`
+
+Here's a list of icons you can use:
+
+* Heart
+* SmallHeart
+* Yes
+* No
+* Happy
+* Sad
+* Confused
+* Angry
+* Asleep
+* Surprised
+* Silly
+* Fabulous
+* Meh
+* TShirt
+* Rollerskate
+* Duck
+* House
+* Tortoise
+* Butterfly
+* StickFigure
+* Ghost
+* Sword
+* Giraffe
+* Skull
+* Umbrella
+* Snake
+* Rabbit
+* Cow
+* QuarterNote
+* EigthNote
+* Pitchfork
+* Target
+* Triangle
+* LeftTriangle
+* Chessboard
+* Diamond
+* SmallDiamond
+* Square
+* SmallSquare
+* Scissors
+* North
+* NorthEast
+* East
+* SouthEast
+* South
+* SouthWest
+* West
+* NorthWest
 
 ## License
 
