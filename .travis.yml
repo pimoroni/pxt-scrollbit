@@ -18,7 +18,7 @@ addons:
     packages:
       - g++-4.8
       - libusb-1.0-0-dev
-      - libsecret-1
+      - libsecret-1-0
       - libsecret-1-dev
 env:
   - PXT_ENV=production CXX=g++-4.8
