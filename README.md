@@ -10,8 +10,6 @@ A scroll:bit is required to use this package, grab yours here: https://shop.pimo
 
 To use this package, go to https://makecode.microbit.org/, click "Advanced" then "Add Package" and search for scroll:bit. 
 
-## Bocks Reference
-
 ## JavaScript Reference
 
 scroll:bit has 144 pixels arranged in 17 columns and 7 rows, each pixel supports 255 levels of brightness although these are gamma-corrected to 183 possible values.
