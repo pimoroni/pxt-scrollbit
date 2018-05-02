@@ -10,7 +10,7 @@ A scroll:bit is required to use this package, grab yours here: https://shop.pimo
 
 To use this package, go to https://makecode.microbit.org/, click "Advanced" then "Add Package" and search for scroll:bit. 
 
-## Bocks Reference
+## Blocks Reference
 
 ## JavaScript Reference
 
