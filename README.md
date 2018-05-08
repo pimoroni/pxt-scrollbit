@@ -12,7 +12,7 @@ To use this package, go to https://makecode.microbit.org/, click "Advanced" then
 
 ## JavaScript Reference
 
-scroll:bit has 144 pixels arranged in 17 columns and 7 rows, each pixel supports 255 levels of brightness although these are gamma-corrected to 183 possible values.
+scroll:bit has 119 pixels arranged in 17 columns and 7 rows, each pixel supports 255 levels of brightness although these are gamma-corrected to 183 possible values.
 
 ### Get the size of your scroll:bit
 
