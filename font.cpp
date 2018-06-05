@@ -1,6 +1,10 @@
 #include "pxt.h"
 using namespace pxt;
 
+#ifndef PXT_CREATE_BUFFER
+#define PXT_CREATE_BUFFER(data, len) ManagedBuffer(data, len).leakData()
+#endif
+
 namespace scrollbit {
     //%
     int getFontDataByte(int index) {
@@ -31,11 +35,11 @@ namespace scrollbit {
     //%
     Buffer getFontData(int charCode) {
         if(charCode < MICROBIT_FONT_ASCII_START || charCode > MICROBIT_FONT_ASCII_END){
-            return ManagedBuffer(5).leakData();
+            return PXT_CREATE_BUFFER(NULL, 5);
         }
         MicroBitFont font = MicroBitFont::getSystemFont();
         int offset = (charCode - MICROBIT_FONT_ASCII_START) * 5;
 
-        return ManagedBuffer((uint8_t *)(font.characters + offset), 5).leakData();
+        return PXT_CREATE_BUFFER((uint8_t *)(font.characters + offset), 5);
     }
 }
