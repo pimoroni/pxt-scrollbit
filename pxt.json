@@ -9,6 +9,7 @@
     "files": [
         "README.md",
         "font.cpp",
+        "gamma.cpp",
         "shims.d.ts",
         "scrollbit.ts"
     ],
