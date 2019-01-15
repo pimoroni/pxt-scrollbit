@@ -354,7 +354,7 @@ namespace scrollbit {
         for (let x = 0; x < leds.length; x++) {
             let brightness = leds.charCodeAt(x);
             let col = x % COLS
-            let row = (x - col) / COLS
+            let row = Math.idiv((x - col), COLS)
             setPixel(col, row, brightness)
         }
         show()
