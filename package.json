@@ -1,10 +1,12 @@
 {
   "name": "pxt-scrollbit",
-  "version": "0.0.1",
-  "dependencies": {},
+  "version": "0.0.5",
+  "dependencies": {
+    "pxt": "^0.4.0"
+  },
   "devDependencies": {
-    "pxt": "0.4.0",
-    "pxt-microbit": "0.14.32"
+    "pxt-core": "^0.4.71",
+    "pxt-microbit": "^1.2.18"
   },
   "scripts": {
     "pxt:init": "pxt target microbit",

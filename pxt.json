@@ -1,6 +1,6 @@
 {
     "name": "scrollbit",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Pimoroni Scroll:Bit",
     "license": "MIT",
     "dependencies": {
@@ -9,6 +9,7 @@
     "files": [
         "README.md",
         "font.cpp",
+        "gamma.cpp",
         "shims.d.ts",
         "scrollbit.ts"
     ],
