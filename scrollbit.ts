@@ -16,6 +16,8 @@ namespace scrollbit {
     const COLS: number = 17
     const ROWS: number = 7
 
+    let UPSIDE_DOWN: boolean = false
+
     const ARROWOFFSET: number = 40
 
     const ICONS: string[] = [
@@ -196,7 +198,19 @@ namespace scrollbit {
     //% brightness.min=0 brightness.max=255 brightness.defl=128
     export function setPixel(col: number, row: number, brightness: number = 128): void {
         if(col >= COLS || row >= ROWS){return}
+        if (UPSIDE_DOWN) {col = (COLS - 1) - col; row = (ROWS - 1) - row}
         buf[pixelAddr(col, row)] = Math.clamp(0, 255, brightness)
+    }
+
+    /**
+     * Set the orientation of the scroll:bit
+     * @param upside_down - is the scroll:bit upside down? (true/false)
+     */
+    //% blockId=scrollbit_upside_down
+    //% block="turn the scroll:bit| upside down? %upside_down"
+    //% upside_down.defl=false
+    export function setUpsideDown(upside_down: boolean): void {
+        UPSIDE_DOWN = upside_down
     }
 
     /**
