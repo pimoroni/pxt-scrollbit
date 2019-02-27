@@ -16,7 +16,7 @@ namespace scrollbit {
     const COLS: number = 17
     const ROWS: number = 7
 
-    var UPSIDE_DOWN: boolean = false
+    let UPSIDE_DOWN: boolean = false
 
     const ARROWOFFSET: number = 40
 
