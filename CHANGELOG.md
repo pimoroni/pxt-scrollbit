@@ -1,3 +1,8 @@
+# 0.0.6
+
+* @kshoji - Fix bug with missing bounds check
+* @septolum - Add support for 180 degree rotation
+
 # 0.0.5
 
 * Add support for `Image` and `Big Image` blocks
