@@ -197,7 +197,7 @@ namespace scrollbit {
     //% row.min=0 row.max=6
     //% brightness.min=0 brightness.max=255 brightness.defl=128
     export function setPixel(col: number, row: number, brightness: number = 128): void {
-        if(col >= COLS || row >= ROWS){return}
+        if(col < 0 || row < 0 || col >= COLS || row >= ROWS){return}
         if (UPSIDE_DOWN) {col = (COLS - 1) - col; row = (ROWS - 1) - row}
         buf[pixelAddr(col, row)] = Math.clamp(0, 255, brightness)
     }
