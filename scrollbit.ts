@@ -246,6 +246,17 @@ namespace scrollbit {
     }
 
     /**
+     * Set all pixels on the scroll:bit
+     * @param brightness - brightness to set (0-255)
+     */
+    //% blockId=scrollbit_set_all
+    //% block="set all pixels| to %brightness"
+    //% brightness.min=0 brightness.max=255 brightness.defl=128
+    export function setAll(brightness: number = 128): void {
+        buf.fill(Math.clamp(0, 255, brightness))
+    }
+
+    /**
      * Return the width (number of cols) of scroll:bit
      */
     //% blockId=scrollbit_cols
