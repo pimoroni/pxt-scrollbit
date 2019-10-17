@@ -127,14 +127,14 @@ namespace scrollbit {
     }
 
     /**
-     * Draw an icon on scroll:bit
-     * @param icon - icon to draw
+     * Display an icon on scroll:bit
+     * @param icon - icon to display
      * @param col - column to set (0-16)
      * @param row - row to set (0-6)
      * @param brightness - brightness to set (0-255)
      */
     //% blockId=scrollbit_set_icon
-    //% block="draw icon %icon| at col %col| row %row| with brightness %brightness"
+    //% block="display icon %icon| at col %col| row %row| with brightness %brightness"
     //% icon.fieldEditor="gridpicker"
     //% icon.fieldOptions.width="400" icon.fieldOptions.columns="5"
     //% icon.fieldOptions.itemColour="black" icon.fieldOptions.tooltips="true"
@@ -147,14 +147,14 @@ namespace scrollbit {
     }
 
     /**
-     * Draw an arrow on scroll:bit
-     * @param arrow - arrow to draw
+     * Display an arrow on scroll:bit
+     * @param arrow - arrow to display
      * @param col - column to set (0-16)
      * @param row - row to set (0-6)
      * @param brightness - brightness to set (0-255)
      */
     //% blockId=scrollbit_set_arrow
-    //% block="draw arrow %arrow| at col %col| row %row| with brightness %brightness"
+    //% block="display arrow %arrow| at col %col| row %row| with brightness %brightness"
     //% col.min=0 col.max=16
     //% row.min=0 row.max=6
     //% brightness.min=0 brightness.max=255 brightness.defl=128
@@ -164,14 +164,14 @@ namespace scrollbit {
     }
 
     /**
-     * Draw an image on scroll:bit
-     * @param image - image to draw
+     * Display an image on scroll:bit
+     * @param image - image to display
      * @param col - column to set (0-16)
      * @param row - row to set (0-6)
      * @param brightness - brightness to set (0-255)
      */
     //% blockId=scrollbit_set_image
-    //% block="draw image %image| at col %col| row %row| with brightness %brightness"
+    //% block="display image %image| at col %col| row %row| with brightness %brightness"
     //% col.min=0 col.max=16
     //% row.min=0 row.max=6
     //% brightness.min=0 brightness.max=255 brightness.defl=128
@@ -246,17 +246,6 @@ namespace scrollbit {
     }
 
     /**
-     * Set all pixels on the scroll:bit
-     * @param brightness - brightness to set (0-255)
-     */
-    //% blockId=scrollbit_set_all
-    //% block="set all pixels| to %brightness"
-    //% brightness.min=0 brightness.max=255 brightness.defl=128
-    export function setAll(brightness: number = 128): void {
-        buf.fill(Math.clamp(0, 255, brightness))
-    }
-
-    /**
      * Return the width (number of cols) of scroll:bit
      */
     //% blockId=scrollbit_cols
@@ -310,7 +299,7 @@ namespace scrollbit {
      * Draw a single alphanumeric character.
      * @param col - column position (0-16)
      * @param row - row position (0-6)
-     * @param char - character to draw
+     * @param char - character to display
      * @param brightness - brightness (0-255)
      */
     export function drawChar(char: string, col: number, row: number, brightness: number = 128): void {
