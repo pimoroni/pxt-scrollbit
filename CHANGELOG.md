@@ -1,3 +1,7 @@
+# 0.0.7
+
+* Compatibility fix for new micro:bit V2
+
 # 0.0.6
 
 * @kshoji - Fix bug with missing bounds check
